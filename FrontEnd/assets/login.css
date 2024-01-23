@@ -241,49 +241,46 @@ li:hover {
 
 }
 
-#contact {
-	width: 50%;
+#login {
+    font-weight: bold;
+}
+
+#log {
+    width: 50%;
 	margin: auto;
+    text-align: center;
 }
 
-#contact>* {
-	text-align: center;
-
+#log h2 {
+    margin-bottom: 60px;
 }
 
-#contact h2 {
-	margin-bottom: 20px;
-}
 
-#contact form {
-	text-align: left;
+#log form {
+    text-align: left;
 	margin-top: 30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
-	height: 50px;
+#log input {
+    height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-#contact label {
-	margin: 2em 0 1em 0;
+#log label {
+    margin: 2em 0 1em 0;
 }
 
-#contact textarea {
-	border: none;
-	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-}
 
 input[type="submit"] {
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
 	background-color: #1D6154;
-	margin: 2em auto;
+	margin: 2em auto 1.5em;
 	width: 180px;
 	text-align: center;
 	border-radius: 60px;
@@ -295,51 +292,11 @@ footer nav ul {
 	margin: 2em
 }
 
-/*Bouton filtre*/
-
-.filterGallery {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-	gap: 10px;
-	margin: 51px 0px;
-}
-
-.filterGallery-btn {
-	font-size: 16px;
-	font-family: syne;
-	border-radius: 60px;
-	border: 1px solid #1D6154;
-	text-align: center;
-	background-color: white;
-	color: #1D6154;
-	cursor: pointer;
-	transition: all 250ms ease;
-}
-
-.filterGallery-btn:hover {
-	background: #1D6154;
-	color: white;
-}
-
-.btn-active{
-	background: #1D6154;
-	color: white;
+.forgetPassword {
+    color: black;
 }
 
 
-.filterAll {
-	padding: 9px 28px;
-}
-
-.filter1{
-	padding: 9px 21px;
-}
-
-.filter2 {
-	padding: 9px 15px;
-}
-
-.filter3 {
-	padding: 9px 10px;
+.error {
+	border: red;
 }
