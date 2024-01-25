@@ -184,6 +184,7 @@ nav ul {
 	display: flex;
 	align-items: center;
 	list-style-type: none;
+	cursor: pointer;
 
 }
 
@@ -322,10 +323,6 @@ footer nav ul {
 	color: white;
 }
 
-.btn-active{
-	background: #1D6154;
-	color: white;
-}
 
 
 .filterAll {
@@ -343,3 +340,4 @@ footer nav ul {
 .filter3 {
 	padding: 9px 10px;
 }
+

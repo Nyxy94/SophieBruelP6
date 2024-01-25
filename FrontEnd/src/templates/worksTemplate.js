@@ -1,3 +1,6 @@
+import { hiddenButton } from "./logoutTemplate.js";
+
+
 export function renderWorks(workList) {
     const gallery = document.querySelector(".gallery");
 
@@ -23,12 +26,27 @@ export function createFilterButton(categories, works) {
 
     const filterGalleryDiv = document.getElementById("filterGalleryId");
     const gallery = document.querySelector(".gallery");
+
+    filterGalleryDiv.innerHTML = "";
+
+    const authToken = localStorage.getItem("authToken");
+
+    if (authToken) {
+        filterGalleryDiv.style.display = "none"
+
+    } else {
+        filterGalleryDiv.style.display = "flex"
+    }
+
+    hiddenButton(authToken);
+
     //affiche bouton tous si il y a minimun 2 categories.
     if (categories.length >= 2) {
         const filterButton = document.createElement("button");
         filterButton.innerHTML = "Tous";
         filterButton.className = "filterGallery-btn filterAll";
         filterGalleryDiv.appendChild(filterButton);
+
         filterButton.addEventListener('click', function () {
             gallery.innerHTML = ""
             renderWorks(works);
@@ -40,7 +58,10 @@ export function createFilterButton(categories, works) {
         filterAllButton.dataset.id = category.id;
         filterAllButton.className = "filterGallery-btn filter" + category.id;
         filterGalleryDiv.appendChild(filterAllButton);
+
         filterAllButton.addEventListener('click', function () {
+
+
             const categoryId = category.id;
             gallery.innerHTML = ""
             if (categoryId === "Tous") {
