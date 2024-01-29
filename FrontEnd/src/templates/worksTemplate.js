@@ -1,4 +1,4 @@
-import { hiddenButton } from "./logoutTemplate.js";
+import { hiddenButton, hiddenEditionBar } from "./logoutTemplate.js";
 
 
 export function renderWorks(workList) {
@@ -27,10 +27,14 @@ export function createFilterButton(categories, works) {
     const filterGalleryDiv = document.getElementById("filterGalleryId");
     const gallery = document.querySelector(".gallery");
 
+
     filterGalleryDiv.innerHTML = "";
+   
+    
 
     const authToken = localStorage.getItem("authToken");
-
+    
+    // Si connecter suppression des boutons filtre.
     if (authToken) {
         filterGalleryDiv.style.display = "none"
 
@@ -39,6 +43,7 @@ export function createFilterButton(categories, works) {
     }
 
     hiddenButton(authToken);
+    hiddenEditionBar(authToken);
 
     //affiche bouton tous si il y a minimun 2 categories.
     if (categories.length >= 2) {
@@ -72,7 +77,12 @@ export function createFilterButton(categories, works) {
             }
         });
     }
+
+    
+
 }
+
+
 
 
 
