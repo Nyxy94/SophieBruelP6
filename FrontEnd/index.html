@@ -12,24 +12,55 @@
 	<script src="https://kit.fontawesome.com/1c14c4df72.js" crossorigin="anonymous"></script>
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="./src/pages/scripts.js"></script>
-	<script type="module" src="./src/pages/scriptsLogout.js"></script>
+
 
 </head>
 
 <body>
-	<a href="#modal1" id="editionBar" class="edition-bar js-modal" hidden>Mode édition</a>
+	<a href="#modal1" id="editionBar" class="edition-bar js-modal" hidden>
+		<i class="fa-regular fa-pen-to-square"></i>
+		Mode édition
+	</a>
 	<aside id="modal1" class="modal" style="display: none;" aria-hidden="true" role="dialog">
 		<div class="modal-wrapper js-modal-stop">
 			<h2 class="modal-title">Galerie photo</h2>
-			<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
+			<button class="js-modal-close cross"><i class="fa-solid fa-xmark"></i></button>
+			<div class="gallery-modal"></div>
+			<div class="line"></div>
+			<a href="#modal2" class="js-modal" id="addPicture">
+				Ajouter une photo
+			</a>
+
+		</div>
+	</aside>
+
+	<aside id="modal2" class="modal" style="display: none;" aria-hidden="true" role="dialog">
+		<div class="modal-wrapper js-modal-stop">
+			<h2 class="modal-title">Ajout photo</h2>
+			<button class="js-modal-close cross"><i class="fa-solid fa-xmark"></i></button>
+			<button class="js-arrow-back arrow"><i class="fa-solid fa-arrow-left "></i></button>
+
+			<div class="containerAddPicture">
+				<div class="statiqueContent">
+					<i class="fa-regular fa-image"></i>
+					<input type="file" id="inputGhostButton">
+					<button id="buttonAddPic"> + Ajouter photo </button>
+					<p class="conditionPic">jpg, png : 4mo max</p>
+				</div>
+			</div>
+
+			<div class="selector-modal">
+				<label for="inputTitle">Titre</label>
+				<input type="text" id="inputTitle" name="inputTitle" class="box">
+				<label for="selectorCategory">Catégorie</label>
+				<select id="selectorCategory" name="category" class="box"></select>
+			</div>
+			<div class="selector-line"></div>
+			<button id="validatePicture" type="button">Valider</button>
 
 		</div>
 
 	</aside>
-
-
-
 
 	<header>
 		<h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
@@ -38,7 +69,7 @@
 				<li>projets</li>
 				<li>contact</li>
 				<li id="logIn"><a href="./login.html">login</a></li>
-				<li id="logoutButton" hidden>logout</li>
+				<li id="logoutButton">logout</li>
 				<li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
 			</ul>
 		</nav>
@@ -61,6 +92,11 @@
 		</section>
 		<section id="portfolio">
 			<h2>Mes Projets</h2>
+			<a href="#modal1" class="js-modal modif-button" id="editButton">
+				<i class="fa-regular fa-pen-to-square"></i>
+				modifier
+			</a>
+
 			<div class="filterGallery" id="filterGalleryId">
 			</div>
 			<div class="gallery">
@@ -88,7 +124,7 @@
 			</ul>
 		</nav>
 	</footer>
-
+	<script type="module" src="./src/pages/scripts.js"></script>
 </body>
 
 </html>

@@ -296,6 +296,7 @@ footer nav ul {
     color: black;
 }
 
-.error {
-	border: red;
+.error-message {
+	color: red;
+	margin-top: 5px;
 }
