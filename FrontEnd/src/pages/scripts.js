@@ -10,6 +10,7 @@ renderWorks(works);
 displayModalWorks(works);
 validatePicture(works);
 
+
 let categories = await getCategories();
 createFilterButton(categories, works);
 

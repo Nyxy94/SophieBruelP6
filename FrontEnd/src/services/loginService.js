@@ -1,4 +1,4 @@
-export function  loginUser(login) {
+export async function loginUser(login) {
     // Création de la charge utile au format JSON.
     const chargeUtile = JSON.stringify(login);
 

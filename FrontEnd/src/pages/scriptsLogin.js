@@ -4,7 +4,7 @@ import { loginUser } from "../services/loginService.js";
 const loginForm = document.getElementById("loginForm");
 
 
-//Fonction de valiation de l'email.
+//Fonction de validation de l'email.
 function validateEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);

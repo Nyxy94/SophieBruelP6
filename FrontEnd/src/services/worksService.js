@@ -19,7 +19,9 @@ export async function deleteWorks(id) {
 
 export async function addWorks(formData) {
     const authToken = localStorage.getItem("authToken");
-
+    formData.forEach(function(value, key){
+        console.log(key + ": " + value); 
+    });
     // Envoyer la requête POST
     const response = await fetch("http://localhost:5678/api/works", {
         method: "POST",

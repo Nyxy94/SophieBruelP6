@@ -16,7 +16,9 @@ const formData = new FormData();
 let modal = null;
 let currentImageElement = null;
 
-function openModal(e) {
+async function openModal(e) {
+    let works = await getWorks();
+    displayModalWorks(works);
     e.preventDefault();
     const targetElement = e.target.getAttribute("href");
     const newModal = document.querySelector(targetElement);
@@ -26,7 +28,7 @@ function openModal(e) {
         //Si un modal est deja ouvert, il est fermer avant d'en ouvrir un autre.
         if (modal !== null) {
 
-            closeModal();
+            closeModal();   
         }
         modal = newModal;
         modal.style.display = null;
@@ -48,8 +50,7 @@ function openModal(e) {
                 });
             });
         }
-
-    }
+    }  
 }
 
 function closeModal() {
@@ -69,6 +70,7 @@ function closeModal() {
     modal = null;
 }
 
+// Empeche l'evenement de se propager a d'autres elements du DOM.
 function stopPropagation(e) {
     e.stopPropagation()
 }
@@ -83,7 +85,8 @@ window.addEventListener("keydown", function (e) {
     }
 });
 
-export function displayModalWorks(workList) {
+export async function displayModalWorks(workList) {
+    
     const galleryModal = document.querySelector(".gallery-modal");
     galleryModal.innerHTML = ""
     for (const work of workList) {
@@ -105,6 +108,8 @@ export function displayModalWorks(workList) {
         cardModal.appendChild(trashIcon);
         galleryModal.appendChild(cardModal);
 
+
+
         trashIcon.addEventListener("click", async () => {
             try {
                 // Demande de confirmation avant la suppression
@@ -114,6 +119,7 @@ export function displayModalWorks(workList) {
                     await deleteWorks(work.id);
                     await refreshWorks();
                     renderWorks(await getWorks()); // Met à jour la galerie principale après la suppression
+                    
                 } else {
                     console.log("Suppression annulée par l'utilisateur.");
                 }
@@ -121,15 +127,18 @@ export function displayModalWorks(workList) {
                 console.error("Error deleting or refreshing works:", error);
             }
         });
-    }
+    } 
+    
 }
+
+
 
 async function refreshWorks() {
     let works = await getWorks();
     displayModalWorks(works);
 }
 
-function addPicture() {
+async function addPicture() {
     // Supprimer l'ancienne image actuelle avant d'ajouter la nouvelle
     if (currentImageElement) {
         currentImageElement.remove();
@@ -138,7 +147,7 @@ function addPicture() {
     inputGhost.value = null; // Réinitialiser la valeur du champ d'entrée pour déclencher l'événement change à chaque fois
 
     // Fonction pour traiter l'événement de changement d'image
-    const handleImageChange = (event) => {
+    const handleImageChange = async (event) => {
         file = event.target.files[0];
 
         if (file.size > maxSize) {
@@ -170,6 +179,8 @@ function addPicture() {
     // Ajouter l'écouteur d'événement
     inputGhost.addEventListener("change", handleImageChange);
     inputGhost.click();
+
+    
 }
 document.querySelector('#buttonAddPic').addEventListener('click', addPicture);
 
@@ -207,8 +218,10 @@ function resetFormFields() {
             statiqueContent.style.display = "flex";
         }
 
-        // Réinitialise l'image après avoir supprimé l'ancienne
-        formData.delete("image");
+        // Réinitialise le formData après avoir supprimé l'ancienne
+        formData.forEach(function(value, key) {
+            formData.delete(key);
+        });
 
         // Réinitialise la valeur du champ d'entrée
         if (inputGhost) {
